@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+// import { Redirect, useHistory } from 'react-router-dom';
 // import { Link } from 'react-router-dom'
-
+// import { useHistory } from 'react-router-dom' 
 export default class LoginPage extends Component {
   constructor(){
     super()

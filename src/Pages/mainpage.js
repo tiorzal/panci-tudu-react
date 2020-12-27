@@ -1,18 +1,36 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class MainPage extends Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
     this.state = {
-      todos: []
-    }
+      todos: [
+        {
+          title: "pertamax",
+          status: false,
+        },
+        {
+          title: "keduax",
+          status: false,
+        },
+        {
+          title: "ketigax",
+          status: true,
+        },
+      ],
+    };
   }
 
   render() {
-    return(
-      <div>
-        ini main page
+    return (
+      <div className="container">
+        <div className="row">
+          <h2>todo list</h2>
+          {this.state.todos.map((e, index) => {
+            return <p key={index +1}>{e.title}</p>;
+          })}
+        </div>
       </div>
-    )
+    );
   }
 }
