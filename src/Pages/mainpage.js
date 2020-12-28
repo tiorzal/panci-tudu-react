@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Todo from '../Components/todo'
 
 export default class MainPage extends Component {
   constructor() {
@@ -27,7 +28,7 @@ export default class MainPage extends Component {
         <div className="row">
           <h2>todo list</h2>
           {this.state.todos.map((e, index) => {
-            return <p key={index +1}>{e.title}</p>;
+            return <Todo key={index} todo={e} todoKey={index}/>;
           })}
         </div>
       </div>
