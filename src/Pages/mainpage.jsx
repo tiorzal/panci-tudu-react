@@ -4,28 +4,7 @@ import DoneTodo from '../Components/doneTodo'
 import { connect } from 'react-redux'
 
 class MainPage extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     todos: [
-  //       {
-  //         id: 1,
-  //         title: "pertamax",
-  //         status: false,
-  //       },
-  //       {
-  //         id: 2,
-  //         title: "keduax",
-  //         status: false,
-  //       },
-  //       {
-  //         id: 3,
-  //         title: "ketigax",
-  //         status: true,
-  //       },
-  //     ],
-  //   };
-  // }
+
 
   falseTodo () {
     return this.props.newTodos.filter( e => !e.status)
@@ -35,9 +14,22 @@ class MainPage extends Component {
     return this.props.newTodos.filter( e => e.status)
   }
 
+  addTodo (e) {
+    e.preventDefault()
+    console.log(e.target[0].value);
+    this.props.addTodo(e.target[0].value);
+  }
+
   render() {
     return (
       <div className="container">
+        <div className="row">
+          <form onSubmit={(e) => this.addTodo(e)}>
+            <input type="text" name="todo"/>
+            <input type="submit" value="add"/>
+          </form>
+
+        </div>
         <div className="row">
           <div className="col-6">
             <h2>todo list</h2>
@@ -63,4 +55,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(MainPage)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTodo: (payload) => dispatch({type: 'ADD_TODO', payload}) 
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage)

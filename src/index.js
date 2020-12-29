@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-
+// import axios from './config/axiosinst'
 
 //init state
 const initState = {
@@ -30,6 +30,18 @@ const initState = {
 
 //reducer
 const reducer = (state = initState, action) => {
+  switch (action.type) {
+    case 'ADD_TODO':
+      console.log(action.payload);
+      return {
+        todos:[
+          ...state.todos,
+          { id: state.todos[state.todos.length - 1].id + 1 , title: action.payload, status: false }
+        ]
+      }
+    default:
+      break;
+  }
   return state
 }
 
