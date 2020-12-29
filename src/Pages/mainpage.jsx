@@ -1,37 +1,38 @@
 import React, { Component } from "react";
 import Todo from '../Components/todo'
 import DoneTodo from '../Components/doneTodo'
+import { connect } from 'react-redux'
 
-export default class MainPage extends Component {
-  constructor() {
-    super();
-    this.state = {
-      todos: [
-        {
-          id: 1,
-          title: "pertamax",
-          status: false,
-        },
-        {
-          id: 2,
-          title: "keduax",
-          status: false,
-        },
-        {
-          id: 3,
-          title: "ketigax",
-          status: true,
-        },
-      ],
-    };
-  }
+class MainPage extends Component {
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     todos: [
+  //       {
+  //         id: 1,
+  //         title: "pertamax",
+  //         status: false,
+  //       },
+  //       {
+  //         id: 2,
+  //         title: "keduax",
+  //         status: false,
+  //       },
+  //       {
+  //         id: 3,
+  //         title: "ketigax",
+  //         status: true,
+  //       },
+  //     ],
+  //   };
+  // }
 
   falseTodo () {
-    return this.state.todos.filter( e => !e.status)
+    return this.props.newTodos.filter( e => !e.status)
   }
 
   trueTodo () {
-    return this.state.todos.filter( e => e.status)
+    return this.props.newTodos.filter( e => e.status)
   }
 
   render() {
@@ -55,3 +56,11 @@ export default class MainPage extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    newTodos: state.todos
+  }
+}
+
+export default connect(mapStateToProps)(MainPage)

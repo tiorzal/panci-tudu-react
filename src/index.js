@@ -3,10 +3,43 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+
+
+//init state
+const initState = {
+  todos: [
+    {
+      id: 1,
+      title: "pertamax",
+      status: false,
+    },
+    {
+      id: 2,
+      title: "keduax",
+      status: false,
+    },
+    {
+      id: 3,
+      title: "ketigax",
+      status: true,
+    },
+  ],
+}
+
+//reducer
+const reducer = (state = initState, action) => {
+  return state
+}
+
+const store = createStore(reducer)
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
