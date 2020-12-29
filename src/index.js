@@ -30,6 +30,7 @@ const initState = {
 
 //reducer
 const reducer = (state = initState, action) => {
+  // console.log('hit reducer');
   switch (action.type) {
     case 'ADD_TODO':
       console.log(action.payload);
@@ -39,6 +40,16 @@ const reducer = (state = initState, action) => {
           { id: state.todos[state.todos.length - 1].id + 1 , title: action.payload, status: false }
         ]
       }
+    case 'DONE_TODO':
+      // console.log('hit', action.payload.id);
+      const newTodo = state.todos
+      newTodo.forEach(e => {
+        if(e.id === action.payload.id){
+          e.status = true;
+        }
+      })
+      console.log(newTodo, '<<<');
+      return { todos: newTodo }
     default:
       break;
   }
