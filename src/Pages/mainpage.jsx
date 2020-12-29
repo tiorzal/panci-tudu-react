@@ -18,6 +18,7 @@ class MainPage extends Component {
     e.preventDefault()
     console.log(e.target[0].value);
     this.props.addTodo(e.target[0].value);
+    e.target.reset()
   }
 
   render() {
@@ -30,7 +31,7 @@ class MainPage extends Component {
           </form>
 
         </div>
-        <div className="row">
+        <div className="row mt-3">
           <div className="col-6">
             <h2>todo list</h2>
             {this.falseTodo().map((e) => {
