@@ -1,11 +1,12 @@
 import React from 'react'
-// import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
-export default function edit() {
-  // const { id } = useParams()
+export default function Edit() {
+  let { id } = useParams();
   return (
     <div>
-      
+      {id}
+      <Link to="/">back</Link>
     </div>
   )
 }

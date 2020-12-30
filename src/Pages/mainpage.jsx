@@ -15,6 +15,11 @@ class MainPage extends Component {
       apiTodos: []
     }
     this.rerender = this.rerender.bind(this)
+    this.editRouteHandler = this.editRouteHandler.bind(this)
+  }
+
+  editRouteHandler(id){
+    this.props.history.push(`/edit/${id}`)
   }
 
   rerender () {
@@ -40,7 +45,7 @@ class MainPage extends Component {
       }
     })
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         this.setState({
           ...this.state,
           apiTodos: data
@@ -87,7 +92,7 @@ class MainPage extends Component {
           <div className="col-6">
             <h2>todo list</h2>
             {this.falseTodo().map((e) => {
-              return <Todo key={e.id} todo={e} rootRerender={this.rerender}/>;
+              return <Todo key={e.id} todo={e} rootRerender={this.rerender} goEdit={this.editRouteHandler}/>;
             })}
           </div>
           <div className="col-6">
