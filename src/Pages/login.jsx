@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-// import { Redirect, useHistory } from 'react-router-dom';
-// import { Link } from 'react-router-dom'
-// import { useHistory } from 'react-router-dom' 
-export default class LoginPage extends Component {
-  constructor(){
-    super()
+import { connect } from "react-redux";
+import axios from '../config/axiosinst'
+
+class LoginPage extends Component {
+  constructor(props){
+    super(props)
     this.state = {
       email: '',
       password: ''
@@ -13,9 +13,28 @@ export default class LoginPage extends Component {
   
   login (e) {
     e.preventDefault()
+    // console.log(this.state.email);
+    // localStorage.setItem('access_token', this.state.email)
+    
     console.log(this.state.email, this.state.password);
-    localStorage.setItem('access_token', this.state.email)
-    document.getElementById("loginForm").reset()
+    axios({
+      url: 'login',
+      method: 'post',
+      data: {
+        email: this.state.email,
+        password: this.state.password
+      }
+    })
+      .then(({ data }) => {
+        console.log(data);
+        localStorage.setItem('access_token', data.access_token)
+        // this.props.login()
+        document.getElementById("loginForm").reset()
+        this.props.history.push('/')
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   render() {
@@ -53,3 +72,17 @@ export default class LoginPage extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    loginStatus: state.loginStatus
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: () => dispatch({type: 'LOGIN'}) 
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

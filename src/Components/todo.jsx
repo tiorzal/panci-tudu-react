@@ -12,8 +12,8 @@ export default class Todo extends Component {
     return(
       <div>
         {console.log(this.props)}
-        {this.props.todo.title}
-        <TodoButton todoId={this.props.todo.id}/>
+        {this.props.todo.tittle}
+        <TodoButton todoId={this.props.todo.id} rootRerender={this.props.rootRerender}/>
       </div>
     )
   }

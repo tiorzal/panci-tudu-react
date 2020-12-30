@@ -1,16 +1,36 @@
+// import axios from 'axios';
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import axios from '../config/axiosinst'
 
 
 export class todoButton extends Component {
 
   doneTodoHandler(e) {
     e.preventDefault();
-    const payload = {
-      id: this.props.todoId
-    }
-    // console.log(payload);
-    this.props.doneTodo(payload)
+    // const payload = {
+    //   id: this.props.todoId
+    // }
+    // // console.log(payload);
+    // this.props.doneTodo(payload)
+    console.log(this.props);
+    axios({
+      url: `todos/${this.props.todoId}`,
+      method: 'patch',
+      headers: {
+        access_token: localStorage.getItem('access_token')
+      },
+      data: {
+        status: 'done'
+      }
+    })
+      .then(response => {
+        console.log(response.data);
+        this.props.rootRerender()
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   render() {

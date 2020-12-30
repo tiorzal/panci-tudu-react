@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux'
 // import axios from './config/axiosinst'
 
@@ -26,6 +27,7 @@ const initState = {
       status: true,
     },
   ],
+  loginStatus: false
 }
 
 //reducer
@@ -35,6 +37,7 @@ const reducer = (state = initState, action) => {
     case 'ADD_TODO':
       console.log(action.payload);
       return {
+        ...state,
         todos:[
           ...state.todos,
           { id: state.todos[state.todos.length - 1].id + 1 , title: action.payload, status: false }
@@ -48,15 +51,19 @@ const reducer = (state = initState, action) => {
           e.status = true;
         }
       })
-      console.log(newTodo, '<<<');
       return { todos: newTodo }
+    case 'LOGIN':
+      return {
+        ...state,
+        loginStatus: true
+      }
     default:
       break;
   }
   return state
 }
 
-const store = createStore(reducer)
+const store = createStore(reducer, applyMiddleware(thunk))
 
 ReactDOM.render(
   <React.StrictMode>
