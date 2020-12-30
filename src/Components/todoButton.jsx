@@ -8,12 +8,7 @@ export class todoButton extends Component {
 
   doneTodoHandler(e) {
     e.preventDefault();
-    // const payload = {
-    //   id: this.props.todoId
-    // }
-    // // console.log(payload);
-    // this.props.doneTodo(payload)
-    console.log(this.props);
+
     axios({
       url: `todos/${this.props.todoId}`,
       method: 'patch',

@@ -4,6 +4,7 @@ import DoneTodo from '../Components/doneTodo'
 import { connect } from 'react-redux'
 import axios from '../config/axiosinst'
 import AddTodoForm from '../Components/addTodoForm'
+// import NavBar from '../Components/Navbar'
 
 
 class MainPage extends Component {
@@ -20,6 +21,10 @@ class MainPage extends Component {
 
   editRouteHandler(id){
     this.props.history.push(`/edit/${id}`)
+  }
+
+  logoutRouteHandler(){
+    this.props.history.push('/login')
   }
 
   rerender () {
@@ -77,29 +82,31 @@ class MainPage extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row mt-3">
-          <AddTodoForm rootRerender={this.rerender}/>
-        </div>
-        <div className="row mt-3">
-          <form onSubmit={(e) => this.addTodo(e)}>
-            <input type="text" name="todo"/>
-            <input type="submit" value="add"/>
-          </form>
-
-        </div>
-        <div className="row mt-3">
-          <div className="col-6">
-            <h2>todo list</h2>
-            {this.falseTodo().map((e) => {
-              return <Todo key={e.id} todo={e} rootRerender={this.rerender} goEdit={this.editRouteHandler}/>;
-            })}
+      <div>
+        <div className="container">
+          <div className="row mt-3">
+            <AddTodoForm rootRerender={this.rerender}/>
           </div>
-          <div className="col-6">
-          <h2>done todo list</h2>
-            {this.trueTodo().map((e) => {
-              return <DoneTodo key={e.id} todo={e} rootRerender={this.rerender}/>;
-            })}
+          <div className="row mt-3">
+            <form onSubmit={(e) => this.addTodo(e)}>
+              <input type="text" name="todo"/>
+              <input type="submit" value="add"/>
+            </form>
+
+          </div>
+          <div className="row mt-3">
+            <div className="col-6">
+              <h2>todo list</h2>
+              {this.falseTodo().map((e) => {
+                return <Todo key={e.id} todo={e} rootRerender={this.rerender} goEdit={this.editRouteHandler}/>;
+              })}
+            </div>
+            <div className="col-6">
+            <h2>done todo list</h2>
+              {this.trueTodo().map((e) => {
+                return <DoneTodo key={e.id} todo={e} rootRerender={this.rerender}/>;
+              })}
+            </div>
           </div>
         </div>
       </div>

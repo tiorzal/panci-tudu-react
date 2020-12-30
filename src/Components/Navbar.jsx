@@ -33,8 +33,10 @@ class Navbar extends Component {
 
   doLogout(e){
     e.preventDefault();
-    localStorage.clear()
-    this.props.history.push('/login')
+    // localStorage.clear()
+    // this.props.logoutRouteHandler()
+    // this.props.history.push('/login')
+    this.props.setIsLoggedIn(false)
   }
 
   render(){

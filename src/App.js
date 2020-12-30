@@ -8,21 +8,31 @@ import {
   Route,
   Switch,
 } from 'react-router-dom'
+import React, {useState} from 'react'
+// import MwGuard from './MwGuard'
 
 function App() {
+  
+
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  console.log(isLoggedIn);
   return (
     <div className="App">
-      <Navbar/>
       <p>ini ceritanya tudu</p>
-      <div className="container">
         <Router>
+          <Navbar setIsLoggedIn={(status) => setIsLoggedIn(status)}/>
           <Switch>
-            <Route path="/" exact component={MainPage}/>
-            <Route path="/edit/:id" exact component={EditPage}/>
-            <Route path="/login" exact component={LoginPage}/>
+            <Route path="/" exact component={MainPage} auth={isLoggedIn}/>
+            <Route path="/login" exact component={LoginPage} setIsLoggedIn={(status) => setIsLoggedIn(status)} />
+              {/* <LoginPage setIsLoggedIn={(status) => setIsLoggedIn(status)}/> */}
+            {/* </Route> */}
+            <Route path="/edit/:id" exact>
+              <EditPage/>
+            </Route>
           </Switch>
         </Router>
-      </div>
     </div>
   );
 }
