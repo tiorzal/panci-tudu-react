@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 // import { useHistory } from "react-router-dom";
 import LogOutButton from '../Components/LogOutButton'
+import LoginButton from '../Components/LoginButton'
 
 class Navbar extends Component {
   constructor(props){
@@ -47,7 +48,7 @@ class Navbar extends Component {
       // button = <button className="btn btn-primary" onClick={(e) => this.doLogout(e)}>logout</button>
       button = <LogOutButton setIsLoggedIn={(status) => this.props.setIsLoggedIn(status)}/>
     } else {
-      button = <button className="btn btn-warning">login</button>
+      button = <LoginButton/>
     }
     return(
       <nav className="navbar navbar-expand-md navbar-light bg-primary">

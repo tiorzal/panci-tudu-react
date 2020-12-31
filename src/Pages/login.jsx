@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import axios from '../config/axiosinst'
+import RegisterButton from '../Components/RegisterButton'
 
 class LoginPage extends Component {
   constructor(props){
@@ -9,6 +10,7 @@ class LoginPage extends Component {
       email: '',
       password: ''
     }
+    this.login = this.login.bind(this)
   }
   
   login (e) {
@@ -42,7 +44,7 @@ class LoginPage extends Component {
     return(
       <div className="container">
         <div className="row">
-          <div className="card col-6 mx-auto p-2" style={{ marginTop: "20vh"}}>
+          <div className="card col-6 mx-auto mb-5 p-2" style={{ marginTop: "20vh"}}>
             <form id="loginForm" className="text-start">
               <label className="form-label">email</label>
               <input
@@ -68,6 +70,8 @@ class LoginPage extends Component {
               >login</button>
             </div>
           </div>
+          <p>anak baru ?</p>
+          <RegisterButton/>
         </div>
       </div>
     )

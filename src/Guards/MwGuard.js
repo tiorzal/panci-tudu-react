@@ -1,15 +1,14 @@
 import React from 'react';
 import { Route, Redirect } from "react-router-dom";
 
-const GuardedRoute = ({ component: Component, auth, ...rest }) => {
-console.log("auth:" + auth)
+const MwGuard = ({ component: Component, ...rest }) => {
     return(
         <Route {...rest} render={(props) => (
-            auth === true
+            (localStorage.getItem('access_token'))
                 ? <Component {...props} />
-                : <Redirect to='/' />
+                : <Redirect to='/login' />
         )} />
     )
 }
 
-export default GuardedRoute;
+export default MwGuard;
