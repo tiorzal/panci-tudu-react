@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import axios from '../config/axiosinst'
 import RegisterButton from '../Components/RegisterButton'
 
+
 class LoginPage extends Component {
   constructor(props){
     super(props)
@@ -31,12 +32,15 @@ class LoginPage extends Component {
         console.log(data);
         localStorage.setItem('access_token', data.access_token)
         // this.props.login()
-        document.getElementById("loginForm").reset()
         this.props.setIsLoggedIn(true)
+        this.props.toastTrigger({ type: 'success', message: `welcome ${this.state.email.split('@')[0]}`})
+        document.getElementById("loginForm").reset()
         this.props.history.push('/')
       })
-      .catch(err => {
-        console.log(err);
+      .catch(({response}) => {
+        if(response){
+          this.props.toastTrigger({ type: 'error', message: response.data})
+        }
       })
   }
 

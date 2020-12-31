@@ -12,14 +12,32 @@ import {
 } from 'react-router-dom'
 import React, {useState, useEffect} from 'react'
 import MwGuard from './Guards/MwGuard'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   
 
 
   const [isLoggedIn, setIsLoggedIn] = useState((localStorage.getItem('access_token')))
+  // const [errors, setErrors] = useState([])
 
+  function toastTrigger(obj){
+    switch (obj.type) {
+      case 'success':
+        toast.success(obj.message, {
+          position: toast.POSITION.TOP_CENTER
+        });
+        break;
+      case 'error':
+        toast.error(obj.message, {
+          position: toast.POSITION.TOP_CENTER
+        });
+        break;
+      default:
+        break;
+    }
+  }
 
   useEffect(()=> {
     console.log('rendering', localStorage.getItem('access_token'));
@@ -30,6 +48,7 @@ function App() {
   return (
     <div className="App">
       <p>ini ceritanya tudu</p>
+        <ToastContainer/>
         <Router>
           <Navbar setIsLoggedIn={(status) => setIsLoggedIn(status)} isLoggedIn={isLoggedIn}/>
           <Switch>
@@ -38,7 +57,7 @@ function App() {
             <Route path="/login" exact 
               render={(props)=> {
                 if(localStorage.getItem('access_token')) return <Redirect to='/'/>
-                return <LoginPage {...props} setIsLoggedIn={(status) => setIsLoggedIn(status)}/>
+                return <LoginPage {...props} setIsLoggedIn={(status) => setIsLoggedIn(status)} toastTrigger={(obj)=>toastTrigger(obj)}/>
               }}/>
             <Route path="/register" exact render={(props) => {
               if(localStorage.getItem('access_token')) return <Redirect to='/'/>
