@@ -26,11 +26,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={MainPage} auth={isLoggedIn}/>
             <Route path="/login" exact component={LoginPage} setIsLoggedIn={(status) => setIsLoggedIn(status)} />
-              {/* <LoginPage setIsLoggedIn={(status) => setIsLoggedIn(status)}/> */}
-            {/* </Route> */}
-            <Route path="/edit/:id" exact>
-              <EditPage/>
-            </Route>
+            <Route path="/edit/:id" exact component={EditPage}/>
           </Switch>
         </Router>
     </div>

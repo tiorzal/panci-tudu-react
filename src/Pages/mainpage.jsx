@@ -88,13 +88,6 @@ class MainPage extends Component {
             <AddTodoForm rootRerender={this.rerender}/>
           </div>
           <div className="row mt-3">
-            <form onSubmit={(e) => this.addTodo(e)}>
-              <input type="text" name="todo"/>
-              <input type="submit" value="add"/>
-            </form>
-
-          </div>
-          <div className="row mt-3">
             <div className="col-6">
               <h2>todo list</h2>
               {this.falseTodo().map((e) => {
