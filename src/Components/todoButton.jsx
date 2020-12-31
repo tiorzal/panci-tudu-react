@@ -20,7 +20,7 @@ export class todoButton extends Component {
       }
     })
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         this.props.rootRerender()
       })
       .catch(err => {
@@ -29,7 +29,7 @@ export class todoButton extends Component {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div>
         <button className="btn btn-primary" onClick={(e) => this.doneTodoHandler(e)}>done</button>

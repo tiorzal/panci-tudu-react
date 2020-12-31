@@ -30,7 +30,7 @@ class LoginPage extends Component {
         localStorage.setItem('access_token', data.access_token)
         // this.props.login()
         document.getElementById("loginForm").reset()
-        // this.props.setIsLoggedIn(true)
+        this.props.setIsLoggedIn(true)
         this.props.history.push('/')
       })
       .catch(err => {

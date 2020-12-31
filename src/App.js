@@ -8,21 +8,24 @@ import {
   Route,
   Switch,
 } from 'react-router-dom'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 // import MwGuard from './MwGuard'
 
 function App() {
   
-
-
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  console.log(isLoggedIn);
+  useEffect(()=> {
+    console.log('rendering');
+    if(localStorage.getItem('access_token')) setIsLoggedIn(true)
+    console.log(isLoggedIn);
+  }, [isLoggedIn])
+
   return (
     <div className="App">
       <p>ini ceritanya tudu</p>
         <Router>
-          <Navbar setIsLoggedIn={(status) => setIsLoggedIn(status)}/>
+          <Navbar setIsLoggedIn={(status) => setIsLoggedIn(status)} isLoggedIn={isLoggedIn}/>
           <Switch>
             <Route path="/" exact component={MainPage} auth={isLoggedIn}/>
             <Route path="/login" exact component={LoginPage} setIsLoggedIn={(status) => setIsLoggedIn(status)} />

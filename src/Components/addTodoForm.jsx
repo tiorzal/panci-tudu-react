@@ -16,7 +16,7 @@ export class addTodoForm extends Component {
       due_date: e.target[2].value,
       status: 'not finished'
     }
-    console.log(payload);
+    // console.log(payload);
     axios({
       url: 'todos',
       method:'post',
@@ -26,7 +26,7 @@ export class addTodoForm extends Component {
       data: payload
     })
       .then( response => {
-        console.log(response);
+        // console.log(response);
         // rootRerender={this.rerender}
         this.props.rootRerender()
         e.target.reset()

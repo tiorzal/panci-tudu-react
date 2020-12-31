@@ -10,7 +10,7 @@ class doneTodo extends React.Component {
   }
 
   doDelete(){
-    console.log(this.props.todo.id);
+    // console.log(this.props.todo.id);
     axios({
       url: `todos/${this.props.todo.id}`,
       method: 'delete',

@@ -1,13 +1,14 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
 
-export default function LogOutButton() {
+export default function LogOutButton(props) {
 
   const history = useHistory()
 
   function doLogOut(e){
     e.preventDefault();
     localStorage.clear();
+    props.setIsLoggedIn(false)
     history.push('/login')
   } 
 

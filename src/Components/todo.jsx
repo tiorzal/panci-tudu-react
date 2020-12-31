@@ -17,7 +17,6 @@ export default class Todo extends Component {
   render() {
     return(
       <div>
-        {console.log(this.props)}
         {this.props.todo.tittle}
         <div className="d-flex justify-content-center">
           <TodoButton todoId={this.props.todo.id} rootRerender={this.props.rootRerender}/>

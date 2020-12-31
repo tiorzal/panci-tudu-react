@@ -32,20 +32,20 @@ class Navbar extends Component {
     }
   }
 
-  doLogout(e){
-    e.preventDefault();
-    // localStorage.clear()
-    // this.props.logoutRouteHandler()
-    // this.props.history.push('/login')
-    this.props.setIsLoggedIn(false)
-  }
+  // doLogout(e){
+  //   e.preventDefault();
+  //   // localStorage.clear()
+  //   // this.props.logoutRouteHandler()
+  //   // this.props.history.push('/login')
+  //   this.props.setIsLoggedIn(false)
+  // }
 
   render(){
     // console.log(this.props);
     let button
-    if(this.state.loginStatus){
+    if(this.props.isLoggedIn){
       // button = <button className="btn btn-primary" onClick={(e) => this.doLogout(e)}>logout</button>
-      button = <LogOutButton/>
+      button = <LogOutButton setIsLoggedIn={(status) => this.props.setIsLoggedIn(status)}/>
     } else {
       button = <button className="btn btn-warning">login</button>
     }

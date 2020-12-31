@@ -28,7 +28,7 @@ class MainPage extends Component {
   }
 
   rerender () {
-    console.log('masuk');
+    // console.log('masuk');
     this.fetchTodos();
     this.forceUpdate();
   }
@@ -36,10 +36,6 @@ class MainPage extends Component {
   componentDidMount(){
     this.fetchTodos()
   }
-
-  // componentDidUpdate(){
-  //   this.fetchTodos()
-  // }
 
   fetchTodos () {
     axios({
