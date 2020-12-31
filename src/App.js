@@ -28,7 +28,7 @@ function App() {
           <Navbar setIsLoggedIn={(status) => setIsLoggedIn(status)} isLoggedIn={isLoggedIn}/>
           <Switch>
             <Route path="/" exact component={MainPage} auth={isLoggedIn}/>
-            <Route path="/login" exact component={LoginPage} setIsLoggedIn={(status) => setIsLoggedIn(status)} />
+            <Route path="/login" exact render={(props)=> <LoginPage {...props} setIsLoggedIn={(status) => setIsLoggedIn(status)}/>}/>
             <Route path="/edit/:id" exact component={EditPage}/>
           </Switch>
         </Router>
