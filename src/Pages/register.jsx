@@ -37,7 +37,7 @@ export class register extends Component {
     return (
       <div>
         <div className="row d-flex justify-content-center" style={{ marginTop: "20vh"}}>
-          <form className="card col-6" onSubmit={(e)=> this.doRegister(e)}>
+          <form className="card col-4 text-start" onSubmit={(e)=> this.doRegister(e)}>
             <div className="form-group">
               <label htmlFor="" className="form-label">email</label>
               <input type="email" className="form-control" name="email"/>
