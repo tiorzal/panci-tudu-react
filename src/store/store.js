@@ -18,6 +18,9 @@ const rootReducer = (state = initState, action) => {
     case 'FETCH_TODOS':
       fetchTodos()
       break;
+    case 'ADD_TODO':
+      addTodo(action.payload)
+      break;
     default:
       break;
   }
@@ -42,6 +45,25 @@ function fetchTodos () {
       store.dispatch({type: 'SET_TODOS', payload: data})
     })
     .catch(err => {
+      console.log(err);
+    })
+}
+
+function addTodo(payload){
+  
+  // console.log(payload);
+  axios({
+    url: 'todos',
+    method:'post',
+    headers:{
+      access_token: localStorage.getItem('access_token'),
+    },
+    data: payload
+  })
+    .then( response => {
+      store.dispatch({type: 'FETCH_TODOS'})
+    })
+    .catch( err => {
       console.log(err);
     })
 }

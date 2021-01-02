@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-// import { connect } from 'react-redux'
-import axios from '../config/axiosinst'
+import { connect } from 'react-redux';
+// import axios from '../config/axiosinst'
 
 export class addTodoForm extends Component {
   constructor(props){
@@ -16,24 +16,26 @@ export class addTodoForm extends Component {
       due_date: e.target[2].value,
       status: 'not finished'
     }
+    this.props.addTodo(payload)
+    e.target.reset()
     // console.log(payload);
-    axios({
-      url: 'todos',
-      method:'post',
-      headers:{
-        access_token: localStorage.getItem('access_token'),
-      },
-      data: payload
-    })
-      .then( response => {
-        // console.log(response);
-        // rootRerender={this.rerender}
-        this.props.rootRerender()
-        e.target.reset()
-      })
-      .catch( err => {
-        console.log(err);
-      })
+    // axios({
+    //   url: 'todos',
+    //   method:'post',
+    //   headers:{
+    //     access_token: localStorage.getItem('access_token'),
+    //   },
+    //   data: payload
+    // })
+    //   .then( response => {
+    //     // console.log(response);
+    //     // rootRerender={this.rerender}
+    //     this.props.rootRerender()
+    //     e.target.reset()
+    //   })
+    //   .catch( err => {
+    //     console.log(err);
+    //   })
   }
 
   render() {
@@ -59,5 +61,10 @@ export class addTodoForm extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTodo: (payload) => dispatch({ type: 'ADD_TODO', payload})
+  }
+}
 
-export default addTodoForm
+export default connect(null, mapDispatchToProps)(addTodoForm)
