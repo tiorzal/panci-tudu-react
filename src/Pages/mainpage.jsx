@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Todo from '../Components/todo'
 import DoneTodo from '../Components/doneTodo'
 import { connect } from 'react-redux'
-import axios from '../config/axiosinst'
+// import axios from '../config/axiosinst'
 import AddTodoForm from '../Components/addTodoForm'
 // import NavBar from '../Components/Navbar'
 
@@ -39,25 +39,25 @@ class MainPage extends Component {
     this.props.fetchTodosRedux()
   }
 
-  fetchTodos () {
-    axios({
-      url: 'todos',
-      method: 'get',
-      headers: {
-        access_token: localStorage.getItem('access_token')
-      }
-    })
-      .then(({ data }) => {
-        this.setState({
-          ...this.state,
-          apiTodos: data
-        })
-        this.props.setTodo(data)
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
+  // fetchTodos () {
+  //   axios({
+  //     url: 'todos',
+  //     method: 'get',
+  //     headers: {
+  //       access_token: localStorage.getItem('access_token')
+  //     }
+  //   })
+  //     .then(({ data }) => {
+  //       this.setState({
+  //         ...this.state,
+  //         apiTodos: data
+  //       })
+  //       this.props.setTodo(data)
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+  // }
 
   falseTodo () {
     // return this.props.newTodos.filter( e => !e.status)
