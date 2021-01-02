@@ -48,7 +48,7 @@ export default class Edit extends Component {
       description: e.target[1].value,
       due_date: e.target[2].value
     }
-    console.log(payload);
+    // console.log(payload);
     axios({
       url: `todos/${this.props.match.params.id}`,
       method: 'put',

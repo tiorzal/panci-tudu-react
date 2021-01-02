@@ -40,9 +40,9 @@ function App() {
   }
 
   useEffect(()=> {
-    console.log('rendering', localStorage.getItem('access_token'));
+    // console.log('rendering', localStorage.getItem('access_token'));
     if(localStorage.getItem('access_token')) setIsLoggedIn(true)
-    console.log(isLoggedIn);
+    // console.log(isLoggedIn);
   }, [isLoggedIn])
 
   return (

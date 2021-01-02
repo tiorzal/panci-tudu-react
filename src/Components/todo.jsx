@@ -19,8 +19,8 @@ export default class Todo extends Component {
       <div>
         {this.props.todo.tittle}
         <div className="d-flex justify-content-center">
+          <button className="btn btn-secondary m-1" onClick={(e) => this.goToEdit(e)}>edit</button>
           <TodoButton todoId={this.props.todo.id} rootRerender={this.props.rootRerender}/>
-          <button className="btn btn-secondary" onClick={(e) => this.goToEdit(e)}>edit</button>
         </div>
       </div>
     )

@@ -31,7 +31,7 @@ export class todoButton extends Component {
   render() {
     // console.log(this.props);
     return (
-      <div>
+      <div className="m-1">
         <button className="btn btn-primary" onClick={(e) => this.doneTodoHandler(e)}>done</button>
       </div>
     )
