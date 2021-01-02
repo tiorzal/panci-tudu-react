@@ -3,67 +3,56 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk';
+// import { createStore, applyMiddleware } from 'redux'
+// import thunk from 'redux-thunk';
 import { Provider } from 'react-redux'
 // import axios from './config/axiosinst'
+import store from './store/store'
 
 //init state
-const initState = {
-  todos: [
-    {
-      id: 1,
-      title: "pertamax",
-      status: false,
-    },
-    {
-      id: 2,
-      title: "keduax",
-      status: false,
-    },
-    {
-      id: 3,
-      title: "ketigax",
-      status: true,
-    },
-  ],
-  loginStatus: false
-}
+// const initState = {
+//   todos: [],
+//   loginStatus: false
+// }
 
 //reducer
-const reducer = (state = initState, action) => {
-  // console.log('hit reducer');
-  switch (action.type) {
-    case 'ADD_TODO':
-      console.log(action.payload);
-      return {
-        ...state,
-        todos:[
-          ...state.todos,
-          { id: state.todos[state.todos.length - 1].id + 1 , title: action.payload, status: false }
-        ]
-      }
-    case 'DONE_TODO':
-      // console.log('hit', action.payload.id);
-      const newTodo = state.todos
-      newTodo.forEach(e => {
-        if(e.id === action.payload.id){
-          e.status = true;
-        }
-      })
-      return { todos: newTodo }
-    case 'LOGIN':
-      return {
-        ...state,
-        loginStatus: true
-      }
-    default:
-      break;
-  }
-  return state
-}
+// const reducer = (state = initState, action) => {
+//   // console.log('hit reducer');s
+//   switch (action.type) {
+//     case 'SET_TODOS':
+//       console.log('sampe');
+//       return {
+//         ...state,
+//         todos: action.payload
+//       }
+//     case 'FETCH_TODOS':
+//       fetchTodos()
+//       break;
+//     default:
+//       break;
+//   }
+//   return state
+// }
 
-const store = createStore(reducer, applyMiddleware(thunk))
+
+
+// const store = createStore(reducer, applyMiddleware(thunk))
+
+// function fetchTodos () {
+//   axios({
+//     url: 'todos',
+//     method: 'get',
+//     headers: {
+//       access_token: localStorage.getItem('access_token')
+//     }
+//   })
+//     .then(({ data }) => {
+//       store.dispatch({type: 'SET_TODOS', payload: data})
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     })
+// }
 
 ReactDOM.render(
   <React.StrictMode>

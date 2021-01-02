@@ -29,12 +29,14 @@ class MainPage extends Component {
 
   rerender () {
     // console.log('masuk');
-    this.fetchTodos();
+    // this.fetchTodos();
+    this.props.fetchTodosRedux()
     this.forceUpdate();
   }
 
   componentDidMount(){
-    this.fetchTodos()
+    // this.fetchTodos()
+    this.props.fetchTodosRedux()
   }
 
   fetchTodos () {
@@ -46,11 +48,11 @@ class MainPage extends Component {
       }
     })
       .then(({ data }) => {
-        // console.log(data);
         this.setState({
           ...this.state,
           apiTodos: data
         })
+        this.props.setTodo(data)
       })
       .catch(err => {
         console.log(err);
@@ -59,12 +61,16 @@ class MainPage extends Component {
 
   falseTodo () {
     // return this.props.newTodos.filter( e => !e.status)
-    return this.state.apiTodos.filter(e => e.status === 'not finished')
+    // return this.state.apiTodos.filter(e => e.status === 'not finished')
+    return this.props.newTodos.filter(e => e.status === 'not finished')
+
   }
 
   trueTodo () {
     // return this.props.newTodos.filter( e => e.status)
-    return this.state.apiTodos.filter(e => e.status !== 'not finished')
+    // return this.state.apiTodos.filter(e => e.status !== 'not finished')
+    return this.props.newTodos.filter(e => e.status !== 'not finished')
+
   }
 
   addTodo (e) {
@@ -79,6 +85,7 @@ class MainPage extends Component {
   render() {
     return (
       <div>
+        {this.props.newTodos.length}
         <div className="container">
           <div className="row mt-3">
             <AddTodoForm rootRerender={this.rerender}/>
@@ -111,7 +118,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addTodo: (payload) => dispatch({type: 'ADD_TODO', payload}) 
+    setTodo: (payload) => dispatch({type: 'SET_TODOS', payload}),
+    fetchTodosRedux: () => dispatch({type: 'FETCH_TODOS'}) 
   }
 }
 
