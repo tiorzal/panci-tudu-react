@@ -30,18 +30,18 @@ class LoginPage extends Component {
     })
       .then(({ data }) => {
         console.log(data);
+        document.getElementById("loginForm").reset()
         localStorage.setItem('access_token', data.access_token)
         // this.props.login()
         this.props.setIsLoggedIn(true)
         this.props.toastTrigger({ type: 'success', message: `welcome ${this.state.email.split('@')[0]}`})
-        document.getElementById("loginForm").reset()
         this.props.history.push('/')
       })
-      .catch(({response}) => {
-        if(response){
-          this.props.toastTrigger({ type: 'error', message: response.data})
-        }
-      })
+  //     .catch(({response}) => {
+  //       if(response){
+  //         this.props.toastTrigger({ type: 'error', message: response.data})
+  //       }
+  //     })
   }
 
   render() {

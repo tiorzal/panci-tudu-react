@@ -118,7 +118,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setTodo: (payload) => dispatch({type: 'SET_TODOS', payload}),
+    // setTodo: (payload) => dispatch({type: 'SET_TODOS', payload}),
     fetchTodosRedux: () => dispatch({type: 'FETCH_TODOS'}) 
   }
 }

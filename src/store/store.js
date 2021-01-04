@@ -44,9 +44,9 @@ function fetchTodos () {
     .then(({ data }) => {
       store.dispatch({type: 'SET_TODOS', payload: data})
     })
-    .catch(err => {
-      console.log(err);
-    })
+    // .catch(err => {
+    //   console.log(err);
+    // })
 }
 
 function addTodo(payload){
