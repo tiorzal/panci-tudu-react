@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3003/',
+  baseURL: 'https://panci-tudu.herokuapp.com/',
 });
 
 // instance.interceptors.request.use(function (err) {console.log(err)});
