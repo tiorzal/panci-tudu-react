@@ -36,9 +36,9 @@ export default class Edit extends Component {
           todo: data
         })
       })
-      .catch(err => {
-        console.log(err); 
-      })
+      // .catch(err => {
+      //   console.log(err); 
+      // })
   }
 
   doEdit(e){

@@ -28,9 +28,9 @@ export class register extends Component {
       .then(_=> {
         this.props.history.push('/login')
       })
-      .catch(err => {
-        console.log(err);
-      })
+      // .catch(err => {
+      //   console.log(err);
+      // })
   }
 
   render() {
